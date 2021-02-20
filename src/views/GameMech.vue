@@ -36,7 +36,7 @@
           >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
               <button
-                @click="showInfo(index)"
+                @click="showCondition(index)"
                 v-for="{ index, name } in conditions"
                 :key="index"
                 onclick="document.getElementById('myModal').showModal()"
@@ -69,8 +69,10 @@
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
-              <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold"
-                >active</span
+              <button 
+              @click="showDamage(index)"
+              class="rounded bg-red-400 py-1 px-3 text-xs font-bold"
+                >active</button
               >
             </div>
           </td>
@@ -118,7 +120,7 @@
           <div
             class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"
           >
-            Modal Header
+            {{conditionalQuery.name}}
           </div>
           <div
             onclick="document.getElementById('myModal').close();"
@@ -143,11 +145,17 @@
           <!--Header End-->
         </div>
         <!-- Modal Content-->
-        <div
-          class="flex w-full h-auto py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
+        <div 
+          class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
         >
-          This is a text inside the modal. You can add your content here.
+          {{conditionalQuery.desc}}
         </div>
+        <br>
+        <!-- <div
+          class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
+        >
+          {{conditionalQuery.desc[1]}}
+        </div> -->
         <!-- End of Modal Content-->
       </div>
     </dialog>
@@ -175,7 +183,7 @@ export default defineComponent({
       state.conditions = data.results;
     });
 
-    const showInfo = async (index: string) => {
+    const showCondition = async (index: string) => {
       console.log(index);
       const { data } = await axios.get(
         `https://www.dnd5eapi.co/api/conditions/${index}`
@@ -183,23 +191,10 @@ export default defineComponent({
 
       state.conditionalQuery = data;
       console.log(state.conditionalQuery);
-
-    //   // modal
-    //   if (state.show_modal) {
-    //     //stop screen scrolling
-    //     document
-    //       .getElementsByTagName("html")[0]
-    //       .classList.remove("overflow-y-hidden");
-    //     state.show_modal = false;
-    //   } else {
-    //     document
-    //       .getElementsByTagName("html")[0]
-    //       .classList.add("overflow-y-hidden");
-    //     state.show_modal = true;
-    //   }
     };
+    
 
-    return { ...toRefs(state), showInfo };
+    return { ...toRefs(state), showCondition };
   },
 });
 </script>
