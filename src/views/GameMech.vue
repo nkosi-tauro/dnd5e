@@ -76,7 +76,7 @@
                 onclick="document.getElementById('myModal').showModal()"
                 class="rounded bg-red-400 py-1 px-3 text-xs font-bold"
               >
-                {{name}}
+                {{ name }}
               </button>
             </div>
           </td>
@@ -104,9 +104,15 @@
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
-              <span class="rounded bg-green-400 py-1 px-3 text-xs font-bold"
-                >inactive</span
+              <button
+                @click="showMagic(index)"
+                v-for="{ index, name } in magicSchools"
+                :key="index"
+                onclick="document.getElementById('myModal').showModal()"
+                class="rounded bg-green-400 py-1 px-3 text-xs font-bold"
               >
+                {{ name }}
+              </button>
             </div>
           </td>
         </tr>
@@ -150,10 +156,9 @@
         </div>
         <!-- Modal Content-->
         <div
-        
           class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
         >
-          {{ conditionalQuery.desc }} 
+          {{ conditionalQuery.desc }}
         </div>
         <br />
         <!-- <div
@@ -176,6 +181,7 @@ export default defineComponent({
     const state = reactive({
       conditions: Array,
       damageTypes: Array,
+      magicSchools : Array,
       conditionalQuery: [],
       show_modal: false,
     });
@@ -188,15 +194,18 @@ export default defineComponent({
       state.conditions = data.results;
 
       //   Damage Types
-      const {data:data2}  = await axios.get(
+      const { data: damage } = await axios.get(
         "https://www.dnd5eapi.co/api/damage-types"
       );
-      state.damageTypes = data2.results;
-      console.log(state.damageTypes)
+      state.damageTypes = damage.results;
+      console.log(state.damageTypes);
 
       //   Magic Schools
-
-
+      const { data: magic } = await axios.get(
+        "https://www.dnd5eapi.co/api/magic-schools"
+      );
+      state.magicSchools = magic.results;
+      console.log(state.magicSchools);
     });
 
     const showCondition = async (index: string) => {
@@ -217,7 +226,16 @@ export default defineComponent({
       console.log(state.conditionalQuery);
     };
 
-    return { ...toRefs(state), showCondition, showDamage };
+    const showMagic = async (index: string) => {
+      const { data } = await axios.get(
+        `https://www.dnd5eapi.co/api/magic-schools/${index}`
+      );
+
+      state.conditionalQuery = data;
+      console.log(state.conditionalQuery);
+    };
+
+    return { ...toRefs(state), showCondition, showDamage, showMagic };
   },
 });
 </script>
