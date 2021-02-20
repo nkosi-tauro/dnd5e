@@ -5,11 +5,7 @@
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-6">
-              <img
-                src="../assets/dnd.png"
-                alt=""
-                class="h-10 xl:h-10 "
-              />
+              <img src="../assets/dnd.png" alt="" class="h-10 xl:h-10" />
             </div>
             <div class="block lg:hidden">
               <button
@@ -32,48 +28,48 @@
               <div
                 class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
               >
-                <a
-                  href="#home"
-                  class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+                <router-link
+                  to="/"
+                  class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   CHARACTERS
-                </a>
-                <a
-                  href="#home"
+                </router-link>
+                <router-link
+                  to="/"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   BACKGROUNDS
-                </a>
-                <a
-                  href="#home"
+                </router-link>
+                <router-link
+                  to="/"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   CLASSES
-                </a>
-                <a
-                  href="#home"
+                </router-link>
+                <router-link
+                  to="/"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   RACES
-                </a>
-                <a
-                  href="#home"
+                </router-link>
+                <router-link
+                  to="/"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   EQUIPMENT
-                </a>
-                <router-link to="/mechanics"><a
-                  href="#home"
+                </router-link>
+                <router-link
+                  to="/mechanics"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   GAME MECHANICS
-                </a></router-link>
-                <a
-                  href="#home"
+                </router-link>
+                <router-link
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+                  to="/"
                 >
-                  RULES
-                </a>
+                  RULES</router-link
+                >
               </div>
               <div class="text-2xl my-1 mx-3">
                 <img src="img/shopping.png" class="h-6" alt="" />
