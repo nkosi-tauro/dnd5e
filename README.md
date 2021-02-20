@@ -83,6 +83,10 @@ $ npm run serve
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE) file.
 
+## Contributions
+
+All types of contributions are encouraged and valued. See 
+[CONTRIBUTING](https://github.com/nkosi-tauro/dnd5e/blob/master/CONTRIBUTING.md) for more details.
 
 Made with :heart: by <a href="https://github.com/nkosi-tauro" target="_blank">Nkosilathi Tauro</a>
 
