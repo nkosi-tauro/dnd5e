@@ -69,11 +69,15 @@
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
-              <button 
-              @click="showDamage(index)"
-              class="rounded bg-red-400 py-1 px-3 text-xs font-bold"
-                >active</button
+              <button
+                @click="showDamage(index)"
+                v-for="{ index, name } in damageTypes"
+                :key="index"
+                onclick="document.getElementById('myModal').showModal()"
+                class="rounded bg-red-400 py-1 px-3 text-xs font-bold"
               >
+                {{name}}
+              </button>
             </div>
           </td>
         </tr>
@@ -120,7 +124,7 @@
           <div
             class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"
           >
-            {{conditionalQuery.name}}
+            {{ conditionalQuery.name }}
           </div>
           <div
             onclick="document.getElementById('myModal').close();"
@@ -145,12 +149,13 @@
           <!--Header End-->
         </div>
         <!-- Modal Content-->
-        <div 
+        <div
+        
           class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
         >
-          {{conditionalQuery.desc}}
+          {{ conditionalQuery.desc }} 
         </div>
-        <br>
+        <br />
         <!-- <div
           class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
         >
@@ -164,27 +169,37 @@
 
 <script lang="ts">
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
-import VueAxios from "vue-axios";
 import axios from "axios";
 
 export default defineComponent({
   setup() {
     const state = reactive({
-      conditions: [],
+      conditions: Array,
+      damageTypes: Array,
       conditionalQuery: [],
       show_modal: false,
     });
 
     onMounted(async () => {
+      // Conditions
       const { data } = await axios.get(
         "https://www.dnd5eapi.co/api/conditions"
       );
-
       state.conditions = data.results;
+
+      //   Damage Types
+      const {data:data2}  = await axios.get(
+        "https://www.dnd5eapi.co/api/damage-types"
+      );
+      state.damageTypes = data2.results;
+      console.log(state.damageTypes)
+
+      //   Magic Schools
+
+
     });
 
     const showCondition = async (index: string) => {
-      console.log(index);
       const { data } = await axios.get(
         `https://www.dnd5eapi.co/api/conditions/${index}`
       );
@@ -192,24 +207,31 @@ export default defineComponent({
       state.conditionalQuery = data;
       console.log(state.conditionalQuery);
     };
-    
 
-    return { ...toRefs(state), showCondition };
+    const showDamage = async (index: string) => {
+      const { data } = await axios.get(
+        `https://www.dnd5eapi.co/api/damage-types/${index}`
+      );
+
+      state.conditionalQuery = data;
+      console.log(state.conditionalQuery);
+    };
+
+    return { ...toRefs(state), showCondition, showDamage };
   },
 });
 </script>
 
 <style scoped>
-  dialog[open] {
-  animation: appear .15s cubic-bezier(0, 1.8, 1, 1.8);
+dialog[open] {
+  animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8);
 }
 
-  dialog::backdrop {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
-    backdrop-filter: blur(3px);
-  }
-  
- 
+dialog::backdrop {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
+  backdrop-filter: blur(3px);
+}
+
 @keyframes appear {
   from {
     opacity: 0;
@@ -220,5 +242,5 @@ export default defineComponent({
     opacity: 1;
     transform: translateX(0);
   }
-} 
+}
 </style>
