@@ -1,16 +1,15 @@
 <template>
   <div class="game-mechanics m-2">
-      <!-- Banner -->
+    <!-- Banner -->
     <div
       class="bg-cover bg-dnd-descent bg-center h-auto text-white py-24 px-10 object-fill"
     >
-      <div class=" text-center">
-        <p class=" font-bold text-3xl text-black uppercase">Game Mechanics</p>
-     
+      <div class="text-center">
+        <p class="font-bold text-3xl text-black uppercase">Game Mechanics</p>
       </div>
     </div>
     <!-- banner -->
-    <table class="border-collapse w-full mt-2  shadow-md">
+    <table class="border-collapse w-full mt-2 shadow-md">
       <thead>
         <tr>
           <th
@@ -34,7 +33,7 @@
           >
             <span
               class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              >Game Mechanics</span
+              >Condition Mechanic</span
             >
             <h2 class="font-semibold">Conditions</h2>
             <p>
@@ -48,6 +47,10 @@
           <td
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
+              >Condition Types</span
+            >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
               <button
                 @click="showCondition(index)"
@@ -69,7 +72,7 @@
           >
             <span
               class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              >Game Mechanics</span
+              >Damage Mechanic</span
             >
             <h2 class="font-semibold">Damage Types</h2>
             <p>
@@ -82,6 +85,10 @@
           <td
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
+              >Damage Types</span
+            >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
               <button
                 @click="showDamage(index)"
@@ -103,7 +110,7 @@
           >
             <span
               class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
-              >Game Mechanics</span
+              >Magic Mechanic</span
             >
             <h2 class="font-semibold">Magic Schools</h2>
             <p>
@@ -117,6 +124,10 @@
           <td
             class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static"
           >
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"
+              >Magic Schools</span
+            >
             <div class="name space-x-2 space-y-2 flex-grow flex-1">
               <button
                 @click="showMagic(index)"
