@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <div class="py-4 px-2 lg:mx-4 xl:mx-12">
+      <div class="w-full py-4 px-2  shadow-md">
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-6">
