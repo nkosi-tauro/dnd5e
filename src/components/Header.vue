@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <div class="w-full py-4 px-2  shadow-md">
+      <div class="w-full py-4 px-2 shadow-md">
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-6">
@@ -83,6 +83,29 @@
 </template>
 
 <script lang="ts">
+// Navbar Toggle
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(
+    document.querySelectorAll(".navbar-burger"),
+    0
+  );
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener("click", function () {
+        // Get the "main-nav" element
+        var $target = document.getElementById("main-nav");
+
+        // Toggle the class on "main-nav"
+        $target!.classList.toggle("hidden");
+      });
+    });
+  }
+});
+
 import { defineComponent } from "vue";
 
 export default defineComponent({
