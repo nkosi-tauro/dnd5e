@@ -1,13 +1,27 @@
 <template>
   <div class="game-mechanics m-2">
-    Game Mechanics
-    <table class="border-collapse w-full">
+      <!-- Banner -->
+    <div
+      class="bg-cover bg-dnd-descent bg-center h-auto text-white py-24 px-10 object-fill"
+    >
+      <div class=" text-center">
+        <p class=" font-bold text-3xl text-black uppercase">Game Mechanics</p>
+     
+      </div>
+    </div>
+    <!-- banner -->
+    <table class="border-collapse w-full mt-2  shadow-md">
       <thead>
         <tr>
           <th
             class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
           >
             Game Mechanics
+          </th>
+          <th
+            class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell"
+          >
+            Click on Type for more Info
           </th>
         </tr>
       </thead>
@@ -160,13 +174,6 @@
         >
           {{ conditionalQuery.desc }}
         </div>
-        <br />
-        <!-- <div
-          class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
-        >
-          {{conditionalQuery.desc[1]}}
-        </div> -->
-        <!-- End of Modal Content-->
       </div>
     </dialog>
   </div>
@@ -181,7 +188,7 @@ export default defineComponent({
     const state = reactive({
       conditions: Array,
       damageTypes: Array,
-      magicSchools : Array,
+      magicSchools: Array,
       conditionalQuery: [],
       show_modal: false,
     });
