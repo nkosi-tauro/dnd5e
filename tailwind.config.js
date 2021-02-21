@@ -6,6 +6,7 @@ module.exports = {
         backgroundImage: theme => ({
           'dnd-descent': "url('../assets/descent.png')",
           'dnd-dragon': "url('../assets/dragon.png')",
+          'dnd-beholder': "url('../assets/beholder.png')",
         })
       },
     },
