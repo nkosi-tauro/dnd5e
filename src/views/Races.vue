@@ -48,10 +48,8 @@
                 {{ indRaces.name }}
               </h2>
               <span class="text-blue-900  font-semibold italic">Speed : {{indRaces.speed}}</span>
-              <!-- <p class="text-blue-900 mt-4 font-semibold italic">Ability Bonuses</p>
-              <p v-for="{index, name} in indRaces.ability_bonuses.ability_score " :key="index" class=" text-gray-600">
-                <span >{{name}} {{index}}</span>
-              </p> -->
+              <!-- Ability Bonuses Coming -->
+              <p class="text-blue-900 mt-4 font-semibold italic">Ability Bonuses ...Coming Soon</p>
               <!-- Alignment -->
               <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
               <p class=" text-gray-600">
@@ -71,7 +69,7 @@
               <p class="text-blue-900 mt-4 font-semibold italic">Starting Profeciencies</p>
               <p v-for="{index, name} in indRaces.starting_proficiencies " :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <a href="javascript:void(0);" class="underline text-blue-500" @click="prof(index)"><span>{{name}}</span></a>
+                <span>{{name}}</span>
               </p>
               <!-- Languages -->
               <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
@@ -84,18 +82,15 @@
               <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
               <p v-for="{index, name} in indRaces.traits" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <a href="javascript:void(0);" class="underline text-blue-500"><span>{{name}}</span></a>
+                <a href="javascript:void(0);" @click="traits(index)" class="underline text-blue-500"><span>{{name}}</span></a>
               </p>
               <!-- Traits Options Coming soon -->
-              <!-- <p class="text-blue-900 mt-1 font-semibold italic">Trait Options</p>
-              <p v-for="{index, name} in indRaces.trait_options" :key="index" class=" text-gray-600">
-                <span >{{name}}</span>
-              </p> -->
+              <p class="text-blue-900 mt-4 font-semibold italic">Trait Options ...Coming Soon</p>
               <!-- Subraces -->
               <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
               <p v-for="{index, name} in indRaces.subraces" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <a href="javascript:void(0);" class="underline text-blue-500"><span>{{name}}</span></a>
+               <span>{{name}}</span>
               </p>
             </div>
           </div>
@@ -117,6 +112,9 @@ export default defineComponent({
     const state = reactive({
       races: Array,
       indRaces: Array,
+      languages : Array,
+      traits : Array,
+      subrace : Array
     });
 
     onMounted(async () => {
@@ -140,11 +138,18 @@ export default defineComponent({
     // language
     const lang = async (index:string) => {
         const {data} = await axios.get(`https://www.dnd5eapi.co/api/languages/${index}`)
-
         console.log(data)
+        state.languages = data;
     }
 
-    return { ...toRefs(state), showRace, showCards, lang };
+    // trails
+    const traits = async (index:string) => {
+        const {data} = await axios.get(`https://www.dnd5eapi.co/api/traits/${index}`)
+        console.log(data)
+        state.traits = data;
+    }
+
+    return { ...toRefs(state), showRace, showCards, lang, traits };
   },
 });
 </script>
