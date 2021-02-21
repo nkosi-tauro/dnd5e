@@ -73,7 +73,7 @@
           <div
             class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"
           >
-            {{ sections.name  }}
+            {{ sections.name }}
           </div>
           <div
             onclick="document.getElementById('myModal').close();"
@@ -99,9 +99,9 @@
         </div>
         <!-- Modal Content-->
         <div
-          class="flex w-full h-full py-10 px-2  bg-gray-200 rounded  text-gray-500"
+          class="flex w-full h-full py-10 px-2 bg-gray-200 rounded text-gray-500" id="pizza"
         >
-          {{ sections.desc }}
+          {{sections.desc}}
         </div>
       </div>
     </dialog>
@@ -118,6 +118,7 @@ export default defineComponent({
       rules: Array,
       ruleSubsections: Array,
       sections: Array,
+      result: null,
     });
 
     onMounted(async () => {
