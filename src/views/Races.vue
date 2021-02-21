@@ -74,7 +74,7 @@
                 <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
                 <p v-for="{index, name} in indRaces.languages " :key="index" class=" text-gray-600">
                 <!-- <span>null</span> -->
-                    <a href="javascript:void(0);" class="underline text-blue-500" @click="lang(index)"><span>{{name}}</span></a>
+                    <a onclick="document.getElementById('myModal').showModal()" href="javascript:void(0);" class="underline text-blue-500" @click="lang(index)"><span>{{name}}</span></a>
                 </p>
                 <p class="text-gray-600">{{indRaces.language_desc}}</p>
 
@@ -82,11 +82,11 @@
                 <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
                 <p v-for="{index, name} in indRaces.traits" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                    <a href="javascript:void(0);" @click="traits(index)" class="underline text-blue-500"><span>{{name}}</span></a>
+                    <a href="javascript:void(0);" onclick="document.getElementById('myModal').showModal()" @click="traits(index)" class="underline text-blue-500"><span>{{name}}</span></a>
                 </p>
 
                 <!-- Traits Options Coming soon -->
-                <p class="text-blue-900 mt-4 font-semibold italic">Trait Options ...Coming Soon</p>
+                <p  class="text-blue-900 mt-4 font-semibold italic">Trait Options ...Coming Soon</p>
               
                 <!-- Subraces -->
                 <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
@@ -99,6 +99,51 @@
         </div>
       </div>
     </div>
+
+        <!-- Modal -->
+    <dialog
+      id="myModal"
+      class="h-auto w-11/12 md:w-1/2 p-5 bg-white rounded-md"
+    >
+      <div class="flex flex-col w-full h-auto">
+        <!-- Header -->
+        <div class="flex w-full h-auto justify-center items-center">
+          <div
+            class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"
+          >
+            <span v-if="!istrait">{{languages.name }}</span>
+            <span v-else>{{trait.name}} </span>
+          </div>
+          <div
+            onclick="document.getElementById('myModal').close();"
+            class="flex w-1/12 h-auto justify-center cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-x"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <!--Header End-->
+        </div>
+        <!-- Modal Content-->
+        <div
+          class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
+        >
+          \
+        </div>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -114,8 +159,8 @@ export default defineComponent({
       races: Array,
       indRaces: Array,
       languages : Array,
-      traits : Array,
-      subrace : Array
+      trait : Array,
+      istrait : false
     });
 
     onMounted(async () => {
@@ -140,6 +185,7 @@ export default defineComponent({
     const lang = async (index:string) => {
         const {data} = await axios.get(`https://www.dnd5eapi.co/api/languages/${index}`)
         console.log(data)
+        state.istrait = false
         state.languages = data;
     }
 
@@ -147,7 +193,8 @@ export default defineComponent({
     const traits = async (index:string) => {
         const {data} = await axios.get(`https://www.dnd5eapi.co/api/traits/${index}`)
         console.log(data)
-        state.traits = data;
+        state.istrait = true
+        state.trait = data;
     }
 
     return { ...toRefs(state), showRace, showCards, lang, traits };
@@ -156,4 +203,24 @@ export default defineComponent({
 </script>
 
 <style scoped>
+dialog[open] {
+  animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8);
+}
+
+dialog::backdrop {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
+  backdrop-filter: blur(3px);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 </style>
