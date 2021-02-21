@@ -19,7 +19,7 @@
               <div
                 class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
               >
-                <button
+                <a href="#race-cards"><button
                   v-for="{ index, name } in races"
                   :key="index"
                   @click="showRace(index); showCards()"
@@ -27,7 +27,7 @@
                   class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   {{ name }}
-                </button>
+                </button></a>
               </div>
             </div>
           </nav>
@@ -109,10 +109,18 @@
         <!-- Header -->
         <div class="flex w-full h-auto justify-center items-center">
           <div
-            class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold"
+            class="flex w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold "
           >
-            <span v-if="!istrait">{{languages.name }}</span>
-            <span v-else>{{trait.name}} </span>
+            <div v-if="!istrait" class="load">
+                {{languages.name }}
+                <p class="text-xs  italic">Type: {{languages.type }}</p>
+                <p class="text-xs  italic">Speakers: {{languages.typical_speakers }}</p>
+            </div>
+     
+            <div v-else>
+                {{trait.name}} 
+            </div>
+          
           </div>
           <div
             onclick="document.getElementById('myModal').close();"
@@ -140,7 +148,9 @@
         <div
           class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
         >
-          \
+            <span v-if="!istrait">{{languages.desc }}</span>
+            <span v-else>{{trait.desc}} </span>
+          
         </div>
       </div>
     </dialog>
@@ -202,7 +212,10 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style >
+html {
+  scroll-behavior: smooth;
+}
 dialog[open] {
   animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8);
 }
