@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/mechanics',
     name: 'Game Mechanics',
     component: () => import('../views/GameMech.vue')
+  },
+  {
+    path: '/rules',
+    name: 'Rules',
+    component: () => import('../views/Rules.vue')
   }
 ]
 
