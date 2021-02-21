@@ -22,7 +22,8 @@
                 <button
                   v-for="{ index, name } in races"
                   :key="index"
-                  @click="showRace(index)"
+                  @click="showRace(index); showCards()"
+                  
                   class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   {{ name }}
@@ -35,7 +36,7 @@
     </header>
 
     <!-- Race Cards -->
-    <div class="race-cards">
+    <div  id="race-cards" class="race-cards hidden">
       <div>
         <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center">
           <div
@@ -46,6 +47,11 @@
               <h2 class="text-3xl text-gray-800 font-bold">
                 {{ indRaces.name }}
               </h2>
+              <span class="text-blue-900  font-semibold italic">Speed : {{indRaces.speed}}</span>
+              <!-- <p class="text-blue-900 mt-4 font-semibold italic">Ability Bonuses</p>
+              <p v-for="{index, name} in indRaces.ability_bonuses.ability_score " :key="index" class=" text-gray-600">
+                <span >{{name}} {{index}}</span>
+              </p> -->
               <!-- Alignment -->
               <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
               <p class=" text-gray-600">
@@ -64,46 +70,47 @@
               <!-- Profeciencies -->
               <p class="text-blue-900 mt-4 font-semibold italic">Starting Profeciencies</p>
               <p v-for="{index, name} in indRaces.starting_proficiencies " :key="index" class=" text-gray-600">
-                <span v-if="indRaces.starting_proficiencies.length === 0">null</span>
-                <span v-else>{{name}}</span>
+                <!-- <span >null</span> -->
+                <a href="javascript:void(0);" class="underline text-blue-500" @click="prof(index)"><span>{{name}}</span></a>
               </p>
               <!-- Languages -->
               <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
               <p v-for="{index, name} in indRaces.languages " :key="index" class=" text-gray-600">
                 <!-- <span>null</span> -->
-                <span >{{name}}</span>
+                <a href="javascript:void(0);" class="underline text-blue-500" @click="lang(index)"><span>{{name}}</span></a>
               </p>
               <p class="text-gray-600">{{indRaces.language_desc}}</p>
               <!-- Traits -->
               <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
               <p v-for="{index, name} in indRaces.traits" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <span >{{name}}</span>
+                <a href="javascript:void(0);" class="underline text-blue-500"><span>{{name}}</span></a>
               </p>
+              <!-- Traits Options Coming soon -->
+              <!-- <p class="text-blue-900 mt-1 font-semibold italic">Trait Options</p>
+              <p v-for="{index, name} in indRaces.trait_options" :key="index" class=" text-gray-600">
+                <span >{{name}}</span>
+              </p> -->
               <!-- Subraces -->
               <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
               <p v-for="{index, name} in indRaces.subraces" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <span >{{name}}</span>
+                <a href="javascript:void(0);" class="underline text-blue-500"><span>{{name}}</span></a>
               </p>
-              <!-- <div class="mt-8">
-                <a
-                  href="#"
-                  class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded"
-                  >Start Now</a
-                >
-              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
 import axios from "axios";
+
+
 
 export default defineComponent({
   setup() {
@@ -115,7 +122,6 @@ export default defineComponent({
     onMounted(async () => {
       const { data } = await axios.get("https://www.dnd5eapi.co/api/races");
       state.races = data.results;
-      console.log(state.races);
     });
 
     const showRace = async (index: string) => {
@@ -123,10 +129,22 @@ export default defineComponent({
         `https://www.dnd5eapi.co/api/races/${index}`
       );
 
-      console.log(data);
       state.indRaces = data;
     };
-    return { ...toRefs(state), showRace };
+    function showCards() {
+        var element = document.getElementById("race-cards");
+        element!.classList.remove("hidden");
+    }
+
+
+    // language
+    const lang = async (index:string) => {
+        const {data} = await axios.get(`https://www.dnd5eapi.co/api/languages/${index}`)
+
+        console.log(data)
+    }
+
+    return { ...toRefs(state), showRace, showCards, lang };
   },
 });
 </script>
