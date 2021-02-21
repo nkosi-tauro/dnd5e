@@ -44,60 +44,61 @@
           >
           <!-- Name -->
             <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-full">
-              <h2 class="text-3xl text-gray-800 font-bold">
-                {{ indRaces.name }}
-              </h2>
-              <span class="text-blue-900  font-semibold italic">Speed : {{indRaces.speed}}</span>
-              <!-- Ability Bonuses Coming -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Ability Bonuses ...Coming Soon</p>
-              <!-- Alignment -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
-              <p class=" text-gray-600">
-                {{ indRaces.alignment }}
-              </p>
-              <!-- Age -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Age</p>
-              <p class=" text-gray-600">
-                {{ indRaces.age }}
-              </p>
-              <!-- Size -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Size : {{ indRaces.size }}</p>
-              <p class=" text-gray-600">
-                {{indRaces.size_description}}
-              </p>
-              <!-- Profeciencies -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Starting Profeciencies</p>
-              <p v-for="{index, name} in indRaces.starting_proficiencies " :key="index" class=" text-gray-600">
-                <!-- <span >null</span> -->
-                <span>{{name}}</span>
-              </p>
-              <!-- Languages -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
-              <p v-for="{index, name} in indRaces.languages " :key="index" class=" text-gray-600">
+                <h2 class="text-3xl text-gray-800 font-bold">{{ indRaces.name }}</h2>
+
+                <span class="text-blue-900  font-semibold italic">Speed : {{indRaces.speed}}</span>
+
+                <!-- Ability Bonuses Coming -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Ability Bonuses ...Coming Soon</p>
+
+                <!-- Alignment -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
+                <p class=" text-gray-600">{{ indRaces.alignment }}</p>
+
+                <!-- Age -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Age</p>
+                <p class=" text-gray-600">{{ indRaces.age }}</p>
+
+                <!-- Size -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Size : {{ indRaces.size }}</p>
+                <p class=" text-gray-600">{{indRaces.size_description}}</p>
+                
+
+                <!-- Profeciencies -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Starting Profeciencies</p>
+                <p v-for="{index, name} in indRaces.starting_proficiencies " :key="index" class=" text-gray-600">
+                    <span>{{name}}</span>
+                </p>
+
+                <!-- Languages -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
+                <p v-for="{index, name} in indRaces.languages " :key="index" class=" text-gray-600">
                 <!-- <span>null</span> -->
-                <a href="javascript:void(0);" class="underline text-blue-500" @click="lang(index)"><span>{{name}}</span></a>
-              </p>
-              <p class="text-gray-600">{{indRaces.language_desc}}</p>
-              <!-- Traits -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
-              <p v-for="{index, name} in indRaces.traits" :key="index" class=" text-gray-600">
+                    <a href="javascript:void(0);" class="underline text-blue-500" @click="lang(index)"><span>{{name}}</span></a>
+                </p>
+                <p class="text-gray-600">{{indRaces.language_desc}}</p>
+
+                <!-- Traits -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
+                <p v-for="{index, name} in indRaces.traits" :key="index" class=" text-gray-600">
                 <!-- <span >null</span> -->
-                <a href="javascript:void(0);" @click="traits(index)" class="underline text-blue-500"><span>{{name}}</span></a>
-              </p>
-              <!-- Traits Options Coming soon -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Trait Options ...Coming Soon</p>
-              <!-- Subraces -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
-              <p v-for="{index, name} in indRaces.subraces" :key="index" class=" text-gray-600">
-                <!-- <span >null</span> -->
-               <span>{{name}}</span>
-              </p>
+                    <a href="javascript:void(0);" @click="traits(index)" class="underline text-blue-500"><span>{{name}}</span></a>
+                </p>
+
+                <!-- Traits Options Coming soon -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Trait Options ...Coming Soon</p>
+              
+                <!-- Subraces -->
+                <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
+                <p v-for="{index, name} in indRaces.subraces" :key="index" class=" text-gray-600">
+                    <!-- <span >null</span> -->
+                    <span>{{name}}</span>
+                </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
