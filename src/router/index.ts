@@ -13,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/Races.vue')
   },
   {
+    path: '/monsters',
+    name: 'Monsters',
+    component: () => import('../views/Monsters.vue')
+  },
+  {
     path: '/mechanics',
     name: 'Game Mechanics',
     component: () => import('../views/GameMech.vue')
