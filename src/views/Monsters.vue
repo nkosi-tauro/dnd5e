@@ -7,7 +7,9 @@
     </Banner>
 
     <header class="mt-2">
-      <div class="py-4 px-2 lg:mx-4 xl:mx-12 text-center">
+      <div
+        class="py-4 px-2 lg:mx-4 xl:mx-12 text-center overflow-x-scroll pb-10 hide-scroll-bar"
+      >
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div
@@ -15,7 +17,7 @@
               class="w-full flex-grow lg:flex items-center lg:w-auto"
             >
               <div
-                class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
+                class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8 overflow-hidden"
               >
                 <a href="#monster-cards"
                   ><button
@@ -54,11 +56,6 @@
                 >Speed : Walk {{ monsterDetails.speed.walk }} Fly: {{ monsterDetails.speed.fly }}  Climb: {{ monsterDetails.speed.climb }} </span
               > -->
 
-              <!-- Ability Bonuses Coming -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Actions ...Coming Soon
-              </p>
-
               <!-- Alignment -->
               <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
               <p class="text-gray-600">{{ monsterDetails.alignment }}</p>
@@ -88,53 +85,58 @@
                 Damage Information
               </p>
               <div>
-              <span class="font-semibold italic">Immunities: </span>
-              <ul
-                class="inline text-gray-600"
-                v-for="immunity in monsterDetails.damage_immunities"
-                :key="immunity"
-              >
-                <li class="inline">{{ immunity }}</li>
-              </ul>
-              </div>
-              
-              <div>
-              <span class="font-semibold italic">Resistance: </span>
-              <ul
-                class="inline text-gray-600"
-                v-for="resistance in monsterDetails.damage_resistances"
-                :key="resistance"
-              >
-               
-                <li v-if="monsterDetails.damage_resistances.length > 0" class="inline">{{ resistance }} </li>
-                <li v-else class="inline">None</li>
-              </ul>
+                <span class="font-semibold italic">Immunities: </span>
+                <ul
+                  class="inline text-gray-600"
+                  v-for="immunity in monsterDetails.damage_immunities"
+                  :key="immunity"
+                >
+                  <li class="inline">{{ immunity }}</li>
+                </ul>
               </div>
 
               <div>
-              <span class="font-semibold italic">Vulnerabilities: </span>
-              <ul
-                class="inline text-gray-600"
-                v-for="vulnerability in monsterDetails.damage_vulnerabilities"
-                :key="vulnerability"
-              >
-                <li class="inline">{{ vulnerability }}</li>
-              </ul>
+                <span class="font-semibold italic">Resistance: </span>
+                <ul
+                  class="inline text-gray-600"
+                  v-for="resistance in monsterDetails.damage_resistances"
+                  :key="resistance"
+                >
+                  <li
+                    v-if="monsterDetails.damage_resistances.length > 0"
+                    class="inline"
+                  >
+                    {{ resistance }}
+                  </li>
+                  <li v-else class="inline">None</li>
+                </ul>
               </div>
 
+              <div>
+                <span class="font-semibold italic">Vulnerabilities: </span>
+                <ul
+                  class="inline text-gray-600"
+                  v-for="vulnerability in monsterDetails.damage_vulnerabilities"
+                  :key="vulnerability"
+                >
+                  <li class="inline">{{ vulnerability }}</li>
+                </ul>
+              </div>
 
               <!-- Abilities -->
               <p class="text-blue-900 mt-4 font-semibold italic">
                 Special Abilities
               </p>
               <div
-                v-for="{ name, desc, usage } in monsterDetails.special_abilities"
+                v-for="{
+                  name,
+                  desc,
+                } in monsterDetails.special_abilities"
                 :key="name"
                 class="text-gray-600"
               >
                 <span class="font-semibold italic">{{ name }}</span>
                 <p>{{ desc }}</p>
-                <p>Usage Type : {{ usage }} </p>
               </div>
 
               <!-- Languages -->
@@ -144,31 +146,29 @@
               <!-- Actions-->
               <p class="text-blue-900 mt-4 font-semibold italic">Actions</p>
               <div
-                v-for="{ attack_bonus, desc,name } in monsterDetails.actions"
+                v-for="{ desc, name } in monsterDetails.actions"
                 :key="name"
                 class="text-gray-600"
               >
-                <p class="font-semibold italic">{{name}} <span class="text-xs"> Attack Bonus : {{attack_bonus}}</span></p>
-                <p>{{desc}}</p>
+                <p class="font-semibold italic">
+                  {{ name }}
+                </p>
+                <p>{{ desc }}</p>
               </div>
-                <p></p>
-
+              
 
               <!-- Actions Options Coming soon -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Actions Options ...Coming Soon
-              </p>
-
-              <!-- Subraces -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Sub Races</p>
-              <p
-                v-for="{ index, name } in monsterDetails.subraces"
-                :key="index"
+              <p class="text-blue-900 mt-4 font-semibold italic">Legendary Actions </p>
+                <div
+                v-for="{ desc, name } in monsterDetails.legendary_actions"
+                :key="name"
                 class="text-gray-600"
               >
-                <!-- <span >null</span> -->
-                <span>{{ name }}</span>
-              </p>
+                <p class="font-semibold italic">
+                  {{ name }}
+                </p>
+                <p>{{ desc }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -201,18 +201,12 @@ export default defineComponent({
       element!.classList.remove("hidden");
     }
 
-
     const showMonster = async (index: string) => {
       const { data } = await axios.get(
         `https://www.dnd5eapi.co/api/monsters/${index}`
       );
-
       state.monsterDetails = data;
-
-      state.monsterActions = data.actions
-      // console.log(state.monsterActions)
-      // const newArr = state.monsterActions.forEach((x:any, i:any) => data.actions[i].damage)
-      // console.log(newArr)
+      state.monsterActions = data.actions;
     };
 
     return { ...toRefs(state), showCards, showMonster };
@@ -223,5 +217,13 @@ export default defineComponent({
 <style >
 html {
   scroll-behavior: smooth;
+}
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
 }
 </style>
