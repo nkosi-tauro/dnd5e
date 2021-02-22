@@ -101,7 +101,7 @@
         <div
           class="flex w-full h-full py-10 px-2 bg-gray-200 rounded text-gray-500" id="pizza"
         >
-          {{sections.desc}}
+          <div v-html="html"></div>
         </div>
       </div>
     </dialog>
@@ -109,6 +109,10 @@
 </template>
 
 <script lang="ts">
+var showdown  = require('showdown'),
+    converter = new showdown.Converter()
+
+
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
 import axios from "axios";
 
@@ -119,6 +123,8 @@ export default defineComponent({
       ruleSubsections: Array,
       sections: Array,
       result: null,
+      text : "",
+      html : ""
     });
 
     onMounted(async () => {
@@ -131,7 +137,6 @@ export default defineComponent({
       const { data } = await axios.get(
         `https://www.dnd5eapi.co/api/rules/${index}`
       );
-      console.log(data.subsections);
       state.ruleSubsections = data.subsections;
     };
 
@@ -141,8 +146,10 @@ export default defineComponent({
         `https://www.dnd5eapi.co/api/rule-sections/${index}`
       );
 
-      console.log(data.desc);
       state.sections = data;
+      state.text = data.desc
+      state.html = converter.makeHtml(state.text);
+      
     };
     return { ...toRefs(state), showRule, showRuleSubsection };
   },
