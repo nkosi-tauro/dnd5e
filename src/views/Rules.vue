@@ -137,7 +137,6 @@ export default defineComponent({
       const { data } = await axios.get(
         `https://www.dnd5eapi.co/api/rules/${index}`
       );
-      console.log(data.subsections);
       state.ruleSubsections = data.subsections;
     };
 
@@ -147,7 +146,6 @@ export default defineComponent({
         `https://www.dnd5eapi.co/api/rule-sections/${index}`
       );
 
-      console.log(data.desc);
       state.sections = data;
       state.text = data.desc
       state.html = converter.makeHtml(state.text);
