@@ -1,12 +1,10 @@
 <template>
   <div class="races m-2">
-    <div
-      class="bg-cover bg-dnd-beholder bg-center h-auto text-white py-24 px-10 object-fill"
-    >
-      <div class="text-center">
-        <p class="font-bold text-3xl text-black uppercase">Races</p>
-      </div>
-    </div>
+    <!-- Banner -->
+    <Banner :backgroundCover="'bg-cover bg-dnd-beholder lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'">
+      <div> Races</div>
+    </Banner>
+
 
     <header class="mt-2">
       <div class="py-4 px-2 lg:mx-4 xl:mx-12 text-center">
@@ -158,12 +156,14 @@
 </template>
 
 <script lang="ts">
+import Banner from '../components/Banner.vue'
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
 import axios from "axios";
 
 
 
 export default defineComponent({
+  components: { Banner },
   setup() {
     const state = reactive({
       races: Array,

@@ -1,14 +1,11 @@
 <template>
   <div class="game-mechanics m-2">
     <!-- Banner -->
-    <div
-      class="bg-cover bg-dnd-descent bg-center h-auto text-white py-24 px-10 object-fill"
-    >
-      <div class="text-center">
-        <p class="font-bold text-3xl text-black uppercase">Game Mechanics</p>
-      </div>
-    </div>
-    <!-- banner -->
+    <Banner :backgroundCover="'bg-cover bg-dnd-descent lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'">
+      <div>Game Mechanics</div>
+    </Banner>
+    <!-- Banner End -->
+
     <table class="border-collapse w-full mt-2 shadow-md">
       <thead>
         <tr>
@@ -191,10 +188,12 @@
 </template>
 
 <script lang="ts">
+import Banner from '../components/Banner.vue'
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
 import axios from "axios";
 
 export default defineComponent({
+  components: {Banner},
   setup() {
     const state = reactive({
       conditions: Array,
