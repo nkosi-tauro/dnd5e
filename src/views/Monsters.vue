@@ -8,17 +8,17 @@
 
     <header class="mt-2">
       <div
-        class="py-4 px-2 lg:mx-4 xl:mx-12 text-center overflow-x-scroll pb-10 hide-scroll-bar"
+        class="py-4 px-2 lg:mx-4 xl:mx-12 overflow-hidden md:overflow-auto md:whitespace-nowrap overscroll-contain pb-10"
       >
         <div class="">
-          <nav class="flex items-center justify-between flex-wrap">
+          <nav
+            class="flex items-center overflow-auto justify-between flex-wrap"
+          >
             <div
               id="main-nav2"
               class="w-full flex-grow lg:flex items-center lg:w-auto"
             >
-              <div
-                class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8 overflow-hidden"
-              >
+              <div class="text-sm lg:flex-grow mt-2 xl:mx-8 overflow-hidden">
                 <a href="#monster-cards"
                   ><button
                     v-for="{ index, name } in monsters"
@@ -39,6 +39,28 @@
       </div>
     </header>
 
+    <!-- Search -->
+    <form
+      @submit.prevent="
+        searchMonster();
+        showCards();
+      "
+      class="text-center mb-3"
+    >
+      <div class="relative   text-gray-600">
+        <input
+          type="search"
+          name="serch"
+          v-model.trim="monster"
+          placeholder="Know your monsters?... Search"
+          class="bg-white h-10 px-5 border border-black border-solid pr-10 rounded-full text-sm focus:outline-none"
+        />
+        <button type="submit" class="p-2 ml-1 bg-blue-400  shadow-lg text-black  top-0 mt-3 mr-1">
+         Search
+        </button>
+      </div>
+    </form>
+
     <!-- Race Cards -->
     <div id="monster-cards" class="monster-cards hidden">
       <div>
@@ -51,10 +73,6 @@
               <h2 class="text-3xl text-gray-800 font-bold">
                 {{ monsterDetails.name }}
               </h2>
-
-              <!-- <span class="text-blue-900 font-semibold italic"
-                >Speed : Walk {{ monsterDetails.speed.walk }} Fly: {{ monsterDetails.speed.fly }}  Climb: {{ monsterDetails.speed.climb }} </span
-              > -->
 
               <!-- Alignment -->
               <p class="text-blue-900 mt-4 font-semibold italic">Alignment</p>
@@ -128,10 +146,7 @@
                 Special Abilities
               </p>
               <div
-                v-for="{
-                  name,
-                  desc,
-                } in monsterDetails.special_abilities"
+                v-for="{ name, desc } in monsterDetails.special_abilities"
                 :key="name"
                 class="text-gray-600"
               >
@@ -155,11 +170,12 @@
                 </p>
                 <p>{{ desc }}</p>
               </div>
-              
 
               <!-- Actions Options Coming soon -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Legendary Actions </p>
-                <div
+              <p class="text-blue-900 mt-4 font-semibold italic">
+                Legendary Actions
+              </p>
+              <div
                 v-for="{ desc, name } in monsterDetails.legendary_actions"
                 :key="name"
                 class="text-gray-600"
@@ -189,6 +205,7 @@ export default defineComponent({
       monsters: Array,
       monsterDetails: Array,
       monsterActions: [],
+      monster: "",
     });
 
     onMounted(async () => {
@@ -209,7 +226,15 @@ export default defineComponent({
       state.monsterActions = data.actions;
     };
 
-    return { ...toRefs(state), showCards, showMonster };
+    const searchMonster = async () => {
+      const { data } = await axios.get(
+        `https://www.dnd5eapi.co/api/monsters/${state.monster.toLowerCase()}`
+      );
+      state.monsterDetails = data;
+      state.monsterActions = data.actions;
+    };
+
+    return { ...toRefs(state), showCards, showMonster, searchMonster };
   },
 });
 </script>
