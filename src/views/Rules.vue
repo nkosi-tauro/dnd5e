@@ -1,54 +1,45 @@
 <template>
   <div class="rules m-2">
     <!-- Banner -->
-    <Banner :backgroundCover="'bg-cover bg-dnd-dragon lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'">
+    <Banner
+      :backgroundCover="'bg-cover bg-dnd-dragon lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'"
+    >
       <div>Rules</div>
     </Banner>
-   <!-- Banner End -->
+    <!-- Banner End -->
 
-    <div v-for="{ index, name } in rules" :key="index" class="rulesList">
-      <a href="#rulesData">
-        <div
-          @click="showRule(index)"
-          class="flex flex-col gap-4 lg:p-4 p-2 rounde-lg m-2"
-        >
-          <div
-            class="flex items-center justify-between w-full p-2 lg:rounded-full md:rounded-full hover:bg-gray-100 cursor-pointer border-2 rounded-lg"
-          >
-            <div class="lg:flex md:flex items-center">
+    <header class="mt-2">
+      <div class="py-4 px-2 lg:mx-4 xl:mx-12 text-center">
+        <div class="">
+          <nav class="flex items-center justify-between flex-wrap">
+            <div
+              id="main-nav2"
+              class="w-full flex-grow lg:flex items-center lg:w-auto"
+            >
               <div
-                class="h-12 w-12 mb-2 lg:mb-0 border md:mb-0 rounded-full mr-3"
-              ></div>
-
-              <div class="flex flex-col">
-                <div class="text-sm leading-3 text-gray-700 font-bold w-full">
-                  {{ name }}
-                </div>
-
-                <div class="text-xs text-gray-600 w-full italic">
-                  Click to view section.
-                </div>
+                class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
+              >
+                <a href="#rules"
+                  ><button
+                    v-for="{ index, name } in rules"
+                    :key="index"
+                    @click="
+                      showRule(index);
+                    "
+                    class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+                  >
+                    {{ name }}
+                  </button></a
+                >
               </div>
             </div>
-
-            <svg
-              class="h-6 w-6 mr-1 invisible md:visible lg:visible xl:visible"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 600 201"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </div>
+          </nav>
         </div>
-      </a>
-    </div>
+      </div>
+    </header>
 
     <div
+      id="rules"
       v-for="{ index, name } in ruleSubsections"
       :key="index"
       @click="showRuleSubsection(index)"
@@ -62,25 +53,28 @@
 
     <!-- Modal -->
     <Modal>
-      <template #title><h1>{{sections.name}}</h1></template>
-      <template #markdown ><p v-html="html"></p></template>
+      <template #title
+        ><h1>{{ sections.name }}</h1></template
+      >
+      <template #markdown><p v-html="html"></p></template>
     </Modal>
   </div>
 </template>
 
 <script lang="ts">
-var showdown  = require('showdown'),
-    converter = new showdown.Converter()
+var showdown = require("showdown"),
+  converter = new showdown.Converter({tables: true});
+  converter.setFlavor('github')
 
-import Banner from '../components/Banner.vue'
-import Modal from '../components/Modal.vue'
+import Banner from "../components/Banner.vue";
+import Modal from "../components/Modal.vue";
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
 import axios from "axios";
 
 export default defineComponent({
-  components : {
+  components: {
     Banner,
-    Modal
+    Modal,
   },
   setup() {
     const state = reactive({
@@ -88,8 +82,8 @@ export default defineComponent({
       ruleSubsections: Array,
       sections: Array,
       result: null,
-      text : "",
-      html : ""
+      text: "",
+      html: "",
     });
 
     onMounted(async () => {
@@ -112,9 +106,8 @@ export default defineComponent({
       );
 
       state.sections = data;
-      state.text = data.desc
+      state.text = data.desc;
       state.html = converter.makeHtml(state.text);
-      
     };
     return { ...toRefs(state), showRule, showRuleSubsection };
   },
