@@ -39,7 +39,7 @@
         </div>
         <!-- Modal Content-->
         <div
-          class="flex w-full h-full py-10 px-2 justify-center items-center bg-gray-200 rounded text-center text-gray-500"
+          class="flex w-full h-full py-10 px-2 justify-center bg-gray-200 rounded text-gray-500"
         >
           <slot name="markdown"></slot >
           <slot name="Querydesc"></slot>
