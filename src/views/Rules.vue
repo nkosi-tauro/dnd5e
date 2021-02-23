@@ -64,7 +64,8 @@
 
 <script lang="ts">
 var showdown = require("showdown"),
-  converter = new showdown.Converter();
+  converter = new showdown.Converter({tables: true});
+  converter.setFlavor('github')
 
 import Banner from "../components/Banner.vue";
 import Modal from "../components/Modal.vue";
