@@ -90,7 +90,6 @@ export default defineComponent({
 
       state.classData = data;
       state.spellCasting = data.spellcasting.info;
-      console.log(state.spellCasting);
     };
 
     function showCards() {
