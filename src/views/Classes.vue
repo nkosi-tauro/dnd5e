@@ -2,7 +2,7 @@
   <div class="classes m-2">
     <!-- Banner -->
     <Banner
-      :backgroundCover="'bg-cover bg-dnd-descent lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'"
+      :backgroundCover="'bg-cover bg-dnd-cube lg:bg-center sm:bg-top h-auto text-white py-24 px-10 object-fill'"
     >
       <div>Classes</div>
     </Banner>
