@@ -7,36 +7,21 @@
       <div>Races</div>
     </Banner>
 
-    <header class="mt-2">
-      <div class="py-4 px-2 lg:mx-4 xl:mx-12 text-center">
-        <div class="">
-          <nav class="flex items-center justify-between flex-wrap">
-            <div
-              id="main-nav2"
-              class="w-full flex-grow lg:flex items-center lg:w-auto"
-            >
-              <div
-                class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
-              >
-                <a href="#race-cards"
-                  ><button
-                    v-for="{ index, name } in races"
-                    :key="index"
-                    @click="
-                      showRace(index);
-                      showCards();
-                    "
-                    class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
-                  >
-                    {{ name }}
-                  </button></a
-                >
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <Nav>
+      <a href="#race-cards"
+        ><button
+          v-for="{ index, name } in races"
+          :key="index"
+          @click="
+            showRace(index);
+            showCards();
+          "
+          class="block lg:inline-block text-md font-bold text-orange-500 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-blue-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
+        >
+          {{ name }}
+        </button></a
+      >
+    </Nav>
 
     <!-- Race Cards -->
     <div id="race-cards" class="race-cards hidden">
@@ -162,18 +147,18 @@
         <span v-else>{{ trait.desc }} </span>
       </template>
     </Modal>
-
   </div>
 </template>
 
 <script lang="ts">
 import Banner from "../components/Banner.vue";
 import Modal from "../components/Modal.vue";
+import Nav from "../components/Nav.vue";
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
 import axios from "axios";
 
 export default defineComponent({
-  components: { Banner, Modal },
+  components: { Banner, Modal, Nav },
   setup() {
     const state = reactive({
       races: Array,
