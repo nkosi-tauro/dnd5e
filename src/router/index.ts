@@ -8,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
+    path: '/backgrounds',
+    name: 'Background',
+    component: () => import('../views/Background.vue')
+  },
+  {
     path: '/classes',
     name: 'Classes',
     component: () => import('../views/Classes.vue')
