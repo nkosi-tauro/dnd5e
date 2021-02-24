@@ -5,7 +5,7 @@
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-6">
-              <img src="../assets/dnd.png" alt="" class="h-10 xl:h-10" />
+              <router-link to="/"><img src="../assets/dnd.png" alt="" class="h-10 xl:h-10" /></router-link>
             </div>
             <div class="block lg:hidden">
               <button
