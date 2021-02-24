@@ -67,9 +67,6 @@
                   RULES</router-link
                 >
               </div>
-              <div class="text-2xl my-1 mx-3">
-                <img src="img/shopping.png" class="h-6" alt="" />
-              </div>
             </div>
           </nav>
         </div>
