@@ -39,20 +39,17 @@
 
 ## :dart: About ##
 
-Dungeons and Dragons 5th Edition application
+Dungeons and Dragons 5th Edition Wiki.  
+*NOTE* This is a fan project!!
 
-<!-- ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3; -->
+
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
 - [Vue 3](https://v3.vuejs.org/)
-- [Vuex 4](https://next.vuex.vuejs.org/)
 - [Vue Router](https://router.vuejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [DnD 5th Edition API](http://www.dnd5eapi.co/)
@@ -83,10 +80,6 @@ $ npm run serve
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE) file.
 
-## Contributions
-
-All types of contributions are encouraged and valued. See 
-[CONTRIBUTING](https://github.com/nkosi-tauro/dnd5e/blob/master/CONTRIBUTING.md) for more details.
 
 Made with :heart: by <a href="https://github.com/nkosi-tauro" target="_blank">Nkosilathi Tauro</a>
 
