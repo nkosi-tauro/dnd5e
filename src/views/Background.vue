@@ -21,44 +21,20 @@
                 {{ acolyteData.name }}
               </h2>
 
-              <span class="text-blue-900 font-semibold italic"
-                >Speed : {{ acolyteData.speed }}</span
-              >
-
-              <!-- Ability Bonuses Coming -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Ability Bonuses ...Coming Soon
-              </p>
-
               <!-- Description -->
               <p class="text-blue-900 mt-4 font-semibold italic">Description</p>
               <p class="text-gray-600 font-semibold">{{ acolyteData.feature.name }}</p>
               <p class="text-gray-600">{{ acolyteData.feature.desc[0] }}</p>
 
-              <!-- Age -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Personality Y</p>
-              <p class="text-gray-600">{{ acolyteData.age }}</p>
-
-              <!-- Size -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Size : {{ acolyteData.size }}
-              </p>
-              <p class="text-gray-600">{{ acolyteData.size_description }}</p>
-
-              <!-- Profeciencies -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Starting Profeciencies
-              </p>
-              <p
-                v-for="{ index, name } in acolyteData.starting_proficiencies"
-                :key="index"
-                class="text-gray-600"
-              >
-                <span>{{ name }}</span>
-              </p>
+              <!-- Starting Equipment -->
+              <p class="text-blue-900 mt-4 font-semibold italic">Starting Equipment ... Coming Soon</p>
+              
+              <!-- langauge Options -->
+              <p class="text-blue-900 mt-4 font-semibold italic">language Options <span class="text-sm"> choose: {{acolyteData.language_options.choose}}</span></p>
+              <p v-for="{index, name} in acolyteData.language_options.from" :key="index" class="text-gray-600"><span>{{ name }}</span></p>
 
               <!-- Traits -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Personality Traits <span class="text-sm"> Choose: {{acolyteData.personality_traits.choose}}</span></p>
+              <p class="text-blue-900 mt-4 font-semibold italic">Personality Traits <span class="text-sm"> choose: {{acolyteData.personality_traits.choose}}</span></p>
               <p class="text-gray-600"><span class="font-semibold">Trait 1: </span> {{ acolyteData.personality_traits.from[0] }}</p>
               <p class="text-gray-600"><span class="font-semibold">Trait 2: </span>{{ acolyteData.personality_traits.from[1] }}</p>
               <p class="text-gray-600"><span class="font-semibold">Trait 3: </span>{{ acolyteData.personality_traits.from[2] }}</p>
@@ -69,7 +45,7 @@
               <p class="text-gray-600"><span class="font-semibold">Trait 8: </span>{{ acolyteData.personality_traits.from[7] }}</p>
 
               <!-- Ideals -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Ideals <span class="text-sm"> Choose: {{acolyteData.ideals.choose}}</span></p>
+              <p class="text-blue-900 mt-4 font-semibold italic">Ideals <span class="text-sm"> choose: {{acolyteData.ideals.choose}}</span></p>
               <div v-for="{index,name} in acolyteData.ideals.from[0].alignments" :key="index" class="text-gray-600 italic font-semibold inline">- {{name}} </div>
               <p class="text-gray-600"><span class="font-semibold"></span> {{ acolyteData.ideals.from[0].desc }}</p>
               <hr>
@@ -84,6 +60,25 @@
               <hr>
               <div v-for="{index,name} in acolyteData.ideals.from[4].alignments" :key="index" class="text-gray-600 italic font-semibold inline mt-1">- {{name}}</div>
               <p class="text-gray-600 "><span class="font-semibold"></span> {{ acolyteData.ideals.from[4].desc }}</p>
+
+
+              <!-- Bonds-->
+              <p class="text-blue-900 mt-4 font-semibold italic">Bonds <span class="text-sm"> choose: {{acolyteData.bonds.choose}}</span></p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 1: </span> {{ acolyteData.bonds.from[0] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 2: </span> {{ acolyteData.bonds.from[1] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 3: </span> {{ acolyteData.bonds.from[2] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 4: </span> {{ acolyteData.bonds.from[3] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 5: </span> {{ acolyteData.bonds.from[4] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Bond 6: </span> {{ acolyteData.bonds.from[5] }}</p>
+              
+              <!-- Flaws-->
+              <p class="text-blue-900 mt-4 font-semibold italic">Flaws <span class="text-sm"> Choose: {{acolyteData.flaws.choose}}</span></p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 1: </span> {{ acolyteData.flaws.from[0] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 2: </span> {{ acolyteData.flaws.from[1] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 3: </span> {{ acolyteData.flaws.from[2] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 4: </span> {{ acolyteData.flaws.from[3] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 5: </span> {{ acolyteData.flaws.from[4] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Flaw 6: </span> {{ acolyteData.flaws.from[5] }}</p>
               
             </div>
           </div>
