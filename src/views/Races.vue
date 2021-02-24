@@ -81,7 +81,7 @@
                 <!-- <span>null</span> -->
                 <a
                   onclick="document.getElementById('myModal').showModal()"
-                  href="javascript:void(0);"
+                  href="#!"
                   class="underline text-blue-500"
                   @click="lang(index)"
                   ><span>{{ name }}</span></a
@@ -98,7 +98,7 @@
               >
                 <!-- <span >null</span> -->
                 <a
-                  href="javascript:void(0);"
+                  href="#!"
                   onclick="document.getElementById('myModal').showModal()"
                   @click="traits(index)"
                   class="underline text-blue-500"
