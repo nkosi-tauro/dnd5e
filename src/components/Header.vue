@@ -5,7 +5,9 @@
         <div class="">
           <nav class="flex items-center justify-between flex-wrap">
             <div class="flex items-center flex-no-shrink text-white mr-6">
-              <router-link to="/"><img src="../assets/dnd.png" alt="" class="h-10 xl:h-10" /></router-link>
+              <router-link to="/"
+                ><img src="../assets/dnd.png" alt="" class="h-10 xl:h-10"
+              /></router-link>
             </div>
             <div class="block lg:hidden">
               <button
@@ -28,12 +30,12 @@
               <div
                 class="text-sm lg:flex-grow mt-2 animated jackinthebox xl:mx-8"
               >
-                <!-- <router-link
-                  to="/backgrounds"
+                <router-link
+                  to="/"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
-                  BACKGROUNDS
-                </router-link> -->
+                  HOME
+                </router-link>
                 <router-link
                   to="/classes"
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
@@ -45,12 +47,6 @@
                   class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
                 >
                   RACES
-                </router-link>
-                <router-link
-                  to="/"
-                  class="block lg:inline-block text-md font-bold text-gray-900 sm:hover:border-indigo-400 hover:text-orange-500 mx-2 focus:text-red-500 p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg"
-                >
-                  EQUIPMENT
                 </router-link>
                 <router-link
                   to="/monsters"
