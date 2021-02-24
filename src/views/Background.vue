@@ -107,7 +107,6 @@ export default defineComponent({
     onBeforeMount(async () => {
         const {data} = await axios.get('https://www.dnd5eapi.co/api/backgrounds/acolyte')
         state.acolyteData = data
-        console.log(state.acolyteData)
     })
     return {...toRefs(state)};
   },
