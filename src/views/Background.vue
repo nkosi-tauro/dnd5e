@@ -57,45 +57,34 @@
                 <span>{{ name }}</span>
               </p>
 
-              <!-- Languages -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Languages</p>
-              <p
-                v-for="{ index, name } in acolyteData.languages"
-                :key="index"
-                class="text-gray-600"
-              >
-                <!-- <span>null</span> -->
-                <a
-                  onclick="document.getElementById('myModal').showModal()"
-                  href="javascript:void(0);"
-                  class="underline text-blue-500"
-                  @click="lang(index)"
-                  ><span>{{ name }}</span></a
-                >
-              </p>
-              <p class="text-gray-600">{{ acolyteData.language_desc }}</p>
-
               <!-- Traits -->
-              <p class="text-blue-900 mt-4 font-semibold italic">Traits</p>
-              <p
-                v-for="{ index, name } in acolyteData.traits"
-                :key="index"
-                class="text-gray-600"
-              >
-                <!-- <span >null</span> -->
-                <a
-                  href="javascript:void(0);"
-                  onclick="document.getElementById('myModal').showModal()"
-                  @click="traits(index)"
-                  class="underline text-blue-500"
-                  ><span>{{ name }}</span></a
-                >
-              </p>
+              <p class="text-blue-900 mt-4 font-semibold italic">Personality Traits <span class="text-sm"> Choose: {{acolyteData.personality_traits.choose}}</span></p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 1: </span> {{ acolyteData.personality_traits.from[0] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 2: </span>{{ acolyteData.personality_traits.from[1] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 3: </span>{{ acolyteData.personality_traits.from[2] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 4: </span>{{ acolyteData.personality_traits.from[3] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 5: </span>{{ acolyteData.personality_traits.from[4] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 6: </span>{{ acolyteData.personality_traits.from[5] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 7: </span>{{ acolyteData.personality_traits.from[6] }}</p>
+              <p class="text-gray-600"><span class="font-semibold">Trait 8: </span>{{ acolyteData.personality_traits.from[7] }}</p>
 
-              <!-- Traits Options Coming soon -->
-              <p class="text-blue-900 mt-4 font-semibold italic">
-                Trait Options ...Coming Soon
-              </p>
+              <!-- Ideals -->
+              <p class="text-blue-900 mt-4 font-semibold italic">Ideals <span class="text-sm"> Choose: {{acolyteData.ideals.choose}}</span></p>
+              <div v-for="{index,name} in acolyteData.ideals.from[0].alignments" :key="index" class="text-gray-600 italic font-semibold inline">- {{name}} </div>
+              <p class="text-gray-600"><span class="font-semibold"></span> {{ acolyteData.ideals.from[0].desc }}</p>
+              <hr>
+              <div v-for="{index,name} in acolyteData.ideals.from[1].alignments" :key="index" class="text-gray-600 italic font-semibold inline mt-1">- {{name}}</div>
+              <p class="text-gray-600 "><span class="font-semibold"></span> {{ acolyteData.ideals.from[1].desc }}</p>
+              <hr>
+              <div v-for="{index,name} in acolyteData.ideals.from[2].alignments" :key="index" class="text-gray-600 italic font-semibold inline mt-1">- {{name}}</div>
+              <p class="text-gray-600 "><span class="font-semibold"></span> {{ acolyteData.ideals.from[2].desc }}</p>
+              <hr>
+              <div v-for="{index,name} in acolyteData.ideals.from[3].alignments" :key="index" class="text-gray-600 italic font-semibold inline mt-1">- {{name}}</div>
+              <p class="text-gray-600 "><span class="font-semibold"></span> {{ acolyteData.ideals.from[3].desc }}</p>
+              <hr>
+              <div v-for="{index,name} in acolyteData.ideals.from[4].alignments" :key="index" class="text-gray-600 italic font-semibold inline mt-1">- {{name}}</div>
+              <p class="text-gray-600 "><span class="font-semibold"></span> {{ acolyteData.ideals.from[4].desc }}</p>
+              
             </div>
           </div>
         </div>
