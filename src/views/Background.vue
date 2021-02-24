@@ -7,19 +7,31 @@
       <div>Backgrounds</div>
     </Banner>
     <!-- Banner End -->
+
+
   </div>
 </template>
 
 <script lang="ts">
 import Banner from "../components/Banner.vue";
 import Nav from "../components/Nav.vue";
-import { defineComponent } from "vue";
+import { defineComponent,  onMounted, reactive, toRefs } from "vue";
+import axios from 'axios'
 
 
 export default defineComponent({
   components:{Banner, Nav},
   setup() {
-    return {};
+    const state = reactive({
+        acolyteData : Array
+    })
+
+    onMounted(async () => {
+        const {data} = await axios.get('https://www.dnd5eapi.co/api/backgrounds/acolyte')
+        state.acolyteData = data
+        console.log(state.acolyteData)
+    })
+    return {...toRefs(state)};
   },
 });
 </script>
