@@ -81,7 +81,7 @@
                 <!-- <span>null</span> -->
                 <a
                   onclick="document.getElementById('myModal').showModal()"
-                  href="#!"
+                  href="javascript:void(0);"
                   class="underline text-blue-500"
                   @click="lang(index)"
                   ><span>{{ name }}</span></a
@@ -98,7 +98,7 @@
               >
                 <!-- <span >null</span> -->
                 <a
-                  href="#!"
+                  href="javascript:void(0);"
                   onclick="document.getElementById('myModal').showModal()"
                   @click="traits(index)"
                   class="underline text-blue-500"
@@ -128,7 +128,7 @@
     </div>
 
     <!-- Modal -->
-    <Modal>
+    <Modal >
       <template #Racetitle>
         <div v-if="!istrait" class="load">
           {{ languages.name }}
@@ -147,18 +147,19 @@
         <span v-else>{{ trait.desc }} </span>
       </template>
     </Modal>
+    
   </div>
 </template>
 
 <script lang="ts">
-import Banner from "../components/Banner.vue";
 import Modal from "../components/Modal.vue";
+import Banner from "../components/Banner.vue";
 import Nav from "../components/Nav.vue";
 import { defineComponent, reactive, onMounted, toRefs } from "vue";
 import axios from "axios";
 
 export default defineComponent({
-  components: { Banner, Modal, Nav },
+  components: {Modal, Banner, Nav },
   setup() {
     const state = reactive({
       races: Array,
